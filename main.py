@@ -33,7 +33,10 @@ for file in filenames:
                 status, (tmpkey, tmpval) = filtered(key, value)
                 if status:
                     result[tmpkey] = tmpval
-            fp_out = open(os.path.join(config.OUTDIR, file), "x")
+            if os.path.isfile(os.path.join(config.OUTDIR, file)):
+                fp_out = open(os.path.join(config.OUTDIR, file), "w")
+            else:
+                fp_out = open(os.path.join(config.OUTDIR, file), "x")
             json.dump(result, fp_out)
             fp_out.close()
         else:
