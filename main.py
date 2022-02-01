@@ -24,7 +24,7 @@ filenames = os.listdir(config.INDIR)
 
 for file in filenames:
     try:
-        fp_in = open(file, "r")
+        fp_in = open(os.path.join(config.INDIR, file), "r")
         json_in = json.load(fp_in)
         fp_in.close()
         if isinstance(json_in, dict):
@@ -33,7 +33,7 @@ for file in filenames:
                 status, (tmpkey, tmpval) = filtered(key, value)
                 if status:
                     result[tmpkey] = tmpval
-            fp_out = open(os.path.join(config.OUTDIR, file), "w")
+            fp_out = open(os.path.join(config.OUTDIR, file), "x")
             json.dump(result, fp_out)
             fp_out.close()
         else:
