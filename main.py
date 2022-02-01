@@ -40,7 +40,7 @@ for file in filenames:
             json.dump(result, fp_out)
             fp_out.close()
         else:
-            raise AssertionError("Wrong file format in ", file)
+            raise AssertionError("Wrong file format in "+os.path.join(config.INDIR, file))
     except AssertionError as AE:
         print(AE)
     except RuntimeError as RE:
